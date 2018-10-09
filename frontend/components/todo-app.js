@@ -51,10 +51,24 @@ export default class TodoApp extends React.Component {
 		this.createTodo();
 	};
 
+	handleCheckBox = (id, todo) => {
+		console.log('path',`/todo/${id}` )
+		FetchApi
+			.put(`/todo/${id}`, {complete: todo.complete})
+			.then(() => {
+				todo.complete = !todo.complete
+				const newTodos = Array.from(this.state.todos);
+				const todoIndex = newTodos.findIndex(todo => todo.id.toString() === id.toString());
+				newTodos[todoIndex] = todo 
+				this.setState({ todos: newTodos });
+			})
+			.catch(() => alert('Error updating tacos'));
+  }
+
 	render() {
 		
 		const todolist = this.state.todos.map(todo => {
-			return <Todo todo={todo} handleDeleteRequest={this.handleDeleteRequest} />
+			return <Todo todo={todo} handleDeleteRequest={this.handleDeleteRequest} handleCheckBox={this.handleCheckBox} />
 		})
 
 		return (
