@@ -1,5 +1,6 @@
 import React from 'react';
 import FetchApi from '../fetch-api';
+import Todo from './Todo';
 
 const ENTER_KEY_CODE = 13;
 
@@ -20,7 +21,7 @@ export default class TodoApp extends React.Component {
 
 	createTodo = () => {
 		FetchApi
-			.post('/todo', { text: this.state.newText })
+			.post('/todo', { text: this.state.newText, complete: false })
 			.then((newTodo) => {
 				const newTodos = Array.from(this.state.todos);
 				newTodos.push(newTodo);
@@ -51,6 +52,11 @@ export default class TodoApp extends React.Component {
 	};
 
 	render() {
+		
+		const todolist = this.state.todos.map(todo => {
+			return <Todo todo={todo} handleDeleteRequest={this.handleDeleteRequest} />
+		})
+
 		return (
 			<div>
 				<h1>todos</h1>
@@ -62,14 +68,7 @@ export default class TodoApp extends React.Component {
 					value={this.state.newText}
 				/>
 				<ul>
-					{this.state.todos.map(todo => (
-						<li key={todo.id}>
-							<div className="view">
-								<label>{todo.text}</label>
-								<button onClick={() => this.handleDeleteRequest(todo.id)}>Remove Todo</button>
-							</div>
-						</li>
-					))}
+					{todolist}
 				</ul>
 			</div>
 		);
