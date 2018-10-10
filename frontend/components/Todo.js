@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import { Input, Button } from 'react-materialize'
-
+import React, { Component } from 'react';
+import { Input, Button } from 'react-materialize';
 
 class Todo extends Component {
 
   render(){
     return (
       <li key={this.props.todo.id}>
-        <div className='view' 
-          style={{display:'flex'}}>
+        <div style={{ display: 'flex',
+                      alignItems: 'center',
+                      margin: '1vw',
+                      justifyContent: 'space-between' }}>
           <Input  name='todo'
-                  type="checkbox"
+                  type='checkbox'
                   label={this.props.todo.text}
                   onChange={(e) => this.props.handleCheckBox(this.props.todo.id, this.props.todo)} 
                   checked={this.props.todo.complete} />
@@ -19,7 +20,9 @@ class Todo extends Component {
                   className='red'
                   waves='light' 
                   icon='remove'
-                  onClick={() => this.props.handleDeleteRequest(this.props.todo.id)} />
+                  onClick={() => this.props.handleDeleteRequest(this.props.todo.id)}
+                  style={{  minWidth: '2vw',
+                            marginLeft: '1vw' }} />
         </div>
       </li>
     )
@@ -27,5 +30,5 @@ class Todo extends Component {
 
 }
 
-export default Todo
+export default Todo;
 

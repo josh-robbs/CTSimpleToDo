@@ -2,7 +2,7 @@ let todosCreated = 1;
 let todos = [{
 	id: 1,
 	text: 'Finish coding exercise',
-	complete: false
+	complete: true
 }];
 
 export default class TodoData {
@@ -22,7 +22,7 @@ export default class TodoData {
 		return new Promise((resolve, reject) => {
 			const todoIndex = todos.findIndex(todo => todo.id.toString() === id.toString());
 			if (todoIndex < 0 || todoIndex >= todos.length) return reject();
-			resolve(todos[todoIndex])
+			resolve(todos[todoIndex]);
 		})
 	}
 
@@ -39,8 +39,8 @@ export default class TodoData {
 		return new Promise((resolve, reject) => {
 			const todoIndex = todos.findIndex(todo => todo.id.toString() === id.toString());
 			if (todoIndex < 0 || todoIndex >= todos.length) return reject();
-			todos[todoIndex].complete = !todo.complete
-			resolve(todo)
+			todos[todoIndex].complete = !todo.complete;
+			resolve(todo);
 		})
 	}
 }
