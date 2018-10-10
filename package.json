@@ -19,6 +19,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-materialize": "^2.4.6",
     "relay": "^0.8.0-1",
     "webpack": "^4.19.1",
     "webpack-dev-server": "^3.1.8",
