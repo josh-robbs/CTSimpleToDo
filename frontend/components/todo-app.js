@@ -2,6 +2,8 @@ import React from 'react';
 import FetchApi from '../fetch-api';
 import Todo from './Todo';
 import TodoCounter from './TodoCounter';
+import { Input } from 'react-materialize';
+
 
 const ENTER_KEY_CODE = 13;
 
@@ -77,7 +79,7 @@ export default class TodoApp extends React.Component {
 		return (
 			<div>
 				<h1>To Do List</h1>
-				<input 	autoFocus
+				<Input 	autoFocus
 								onChange={this.handleChange}
 								onKeyDown={this.handleKeyDown}
 								placeholder="What needs to be done?"
