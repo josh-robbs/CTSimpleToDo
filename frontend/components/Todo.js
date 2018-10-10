@@ -16,7 +16,6 @@ class Todo extends Component {
                   onChange={(e) => this.props.handleCheckBox(this.props.todo.id, this.props.todo)} 
                   checked={this.props.todo.complete} />
           <Button floating 
-                  small 
                   className='red'
                   waves='light' 
                   icon='remove'
