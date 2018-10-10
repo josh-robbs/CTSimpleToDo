@@ -1,6 +1,7 @@
 import React from 'react';
 import FetchApi from '../fetch-api';
 import Todo from './Todo';
+import TodoCounter from './TodoCounter';
 
 const ENTER_KEY_CODE = 13;
 
@@ -52,7 +53,6 @@ export default class TodoApp extends React.Component {
 	};
 
 	handleCheckBox = (id, todo) => {
-		console.log('path',`/todo/${id}` )
 		FetchApi
 			.put(`/todo/${id}`, {complete: todo.complete})
 			.then(() => {
@@ -68,22 +68,24 @@ export default class TodoApp extends React.Component {
 	render() {
 		
 		const todolist = this.state.todos.map(todo => {
-			return <Todo todo={todo} handleDeleteRequest={this.handleDeleteRequest} handleCheckBox={this.handleCheckBox} />
+			return <Todo 	key={todo.id}
+										todo={todo}
+										handleDeleteRequest={this.handleDeleteRequest} 
+										handleCheckBox={this.handleCheckBox} />
 		})
 
 		return (
 			<div>
-				<h1>todos</h1>
-				<input
-					autoFocus
-					onChange={this.handleChange}
-					onKeyDown={this.handleKeyDown}
-					placeholder="What needs to be done?"
-					value={this.state.newText}
-				/>
+				<h1>To Do List</h1>
+				<input 	autoFocus
+								onChange={this.handleChange}
+								onKeyDown={this.handleKeyDown}
+								placeholder="What needs to be done?"
+								value={this.state.newText} />
 				<ul>
 					{todolist}
 				</ul>
+				<TodoCounter todos={this.state.todos} />
 			</div>
 		);
 	}
