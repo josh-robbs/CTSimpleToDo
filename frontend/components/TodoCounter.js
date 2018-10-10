@@ -7,7 +7,7 @@ class TodoCounter extends Component {
     let completed = this.props.todos.filter((todo)=>todo.complete===true).length
     return (
       <div>
-        <h1>You have completed {completed} of {count} todos.</h1>
+        <p>You have completed {completed} of {count} todos.</p>
       </div>
     )
   }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Input, Button } from 'react-materialize'
 
+
 class Todo extends Component {
 
   render(){
     return (
       <li key={this.props.todo.id}>
-        <div className="view" >
+        <div className='view' 
+          style={{display:'flex'}}>
           <Input  name='todo'
                   type="checkbox"
                   label={this.props.todo.text}

@@ -2,7 +2,7 @@ import React from 'react';
 import FetchApi from '../fetch-api';
 import Todo from './Todo';
 import TodoCounter from './TodoCounter';
-import { Input } from 'react-materialize';
+import { Input, Row, Col } from 'react-materialize';
 
 
 const ENTER_KEY_CODE = 13;
@@ -78,16 +78,36 @@ export default class TodoApp extends React.Component {
 
 		return (
 			<div>
-				<h1>To Do List</h1>
-				<Input 	autoFocus
-								onChange={this.handleChange}
-								onKeyDown={this.handleKeyDown}
-								placeholder="What needs to be done?"
-								value={this.state.newText} />
-				<ul>
-					{todolist}
-				</ul>
-				<TodoCounter todos={this.state.todos} />
+				<Row>
+					<Col s={.5} className='grid-example'></Col>
+					<Col s={8} className='grid-example'>
+						<h1>To Do List</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col s={.5} className='grid-example'></Col>
+					<Col s={8} className='grid-example'>
+						<TodoCounter todos={this.state.todos} />
+					</Col>
+				</Row>
+				<Row>
+					<Col s={.5} className='grid-example'></Col>
+					<Col s={8} className='grid-example'>
+						<Input 	autoFocus
+										onChange={this.handleChange}
+										onKeyDown={this.handleKeyDown}
+										placeholder="What needs to be done?"
+										value={this.state.newText} />
+					</Col>
+				</Row>
+				<Row>
+					<Col s={.5} className='grid-example'></Col>
+					<Col s={8} className='grid-example'>
+						<ul>
+							{todolist}
+						</ul>					
+					</Col>
+				</Row>
 			</div>
 		);
 	}
