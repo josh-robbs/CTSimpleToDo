@@ -5,7 +5,7 @@ class Todo extends Component {
 
   render(){
     return (
-      <li key={this.props.todo.id}>
+      <li>
         <div style={{ display: 'flex',
                       alignItems: 'center',
                       margin: '1vw',
