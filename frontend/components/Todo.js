@@ -13,7 +13,7 @@ class Todo extends Component {
           <Input  name='todo'
                   type='checkbox'
                   label={this.props.todo.text}
-                  onChange={(e) => this.props.handleCheckBox(this.props.todo.id, this.props.todo)} 
+                  onChange={(e) => this.props.handleCheckBox(e, this.props.todo.id, this.props.todo)} 
                   checked={this.props.todo.complete} />
           <Button floating 
                   className='red'

@@ -52,18 +52,28 @@ export default class TodoApp extends React.Component {
 		this.createTodo();
 	};
 
-	handleCheckBox = (id, todo) => {
-		todo.complete = !todo.complete;
-		
+	handleCheckBox = (e, id, todo) => {
+		// todo.complete = !todo.complete;
+		e.preventDefault()
+		const updatedToDo = todo
+		updatedToDo.complete = !updatedToDo.complete
 		FetchApi
-		.put(`/todo/${id}`, todo)
-		.then(() => {
+		///// added a broken route to fire the else if
+		.put(`/todo/${id}/z`, updatedToDo)
+		.then((res) => {
+			console.log('hits then after put request')
+			if (res.status !== 201) {
+				console.log('enters else if at not 201')
+				alert('Error updating todos')
+			} else if(res.status === 201) {
+				///// for some dumb reason, state is still getting updated and I can't fix it!!!!!!!!!
+				console.log('enters if at 201')
 				const newTodos = Array.from(this.state.todos);
 				const todoIndex = newTodos.findIndex(todo => todo.id.toString() === id.toString());
-				newTodos[todoIndex] = todo ;
+				newTodos[todoIndex] = updatedToDo ;
 				this.setState({ todos: newTodos });
-			})
-			.catch(() => alert('Error updating todos'));
+			} 
+		})
   };
 
 	render() {
